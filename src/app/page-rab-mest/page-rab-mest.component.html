@@ -1,0 +1,36 @@
+<mat-drawer-container class="container">
+
+
+<mat-drawer mode="side" opened>
+  <mat-list>
+    <mat-list-item *ngFor="let otdel of otdels"  [ngClass]="{'selectOtdel':otdel === selectOtdel}" (click)="selectedOtdel(otdel)">
+
+      {{otdel.name}}
+
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-drawer>
+  <mat-drawer-content>
+    <mat-accordion>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Сотрудники в отделе ({{dataSourceUsers.data.length}})
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+          <app-user-table [dataSource]="dataSourceUsers"></app-user-table>
+      </mat-expansion-panel>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Оборудование в отделе ({{dataSourceEquipment.data.length}})
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <app-equipment-table [dataSource]="dataSourceEquipment"></app-equipment-table>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-drawer-content>
+</mat-drawer-container>

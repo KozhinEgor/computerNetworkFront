@@ -1,0 +1,43 @@
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- 'id','name','otdel', 'user', 'categoryEquipment' -->
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> № </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Название </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="otdel">
+    <th mat-header-cell *matHeaderCellDef> Отдел </th>
+    <td mat-cell *matCellDef="let element"> {{element.otdel.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef> Отсветственный </th>
+    <td mat-cell *matCellDef="let element"> {{element.user.fio}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoryEquipment">
+    <th mat-header-cell *matHeaderCellDef> Отдел </th>
+    <td mat-cell *matCellDef="let element"> {{element.category_equipment.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> изменить </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="openEdit(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

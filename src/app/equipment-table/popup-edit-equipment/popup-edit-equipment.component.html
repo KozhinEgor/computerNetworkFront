@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Редактирование {{data.category_equipment.name}} № {{data.id}}</h1>
+<mat-dialog-content>
+  <div class = "row">
+    <app-select-category-equipment [categ]="data.category_equipment" (Change)="onChangecategory_equipment($event)"></app-select-category-equipment>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close="">Закрыть</button>
+</mat-dialog-actions>
