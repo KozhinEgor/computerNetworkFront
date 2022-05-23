@@ -27,6 +27,8 @@ import { SelectUserComponent } from './select-user/select-user.component';
 import { SelectCategoryEquipmentComponent } from './select-category-equipment/select-category-equipment.component';
 import { SelectOtdelComponent } from './select-otdel/select-otdel.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { ComponentTableComponent } from './component-table/component-table.component';
+import { SelectComponentComponent } from './select-component/select-component.component';
 
 
 const routes = [
@@ -48,7 +50,9 @@ const routes = [
     PopupEditUserComponent,
     SelectUserComponent,
     SelectCategoryEquipmentComponent,
-    SelectOtdelComponent
+    SelectOtdelComponent,
+    ComponentTableComponent,
+    SelectComponentComponent
   ],
     imports: [
         AppRoutingModule,

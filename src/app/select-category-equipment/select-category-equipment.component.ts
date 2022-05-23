@@ -27,14 +27,14 @@ export class SelectCategoryEquipmentComponent implements OnInit {
         startWith(''),
         map(value => typeof value === 'string' ? value : value.name),
         map(val => val ? this._filter(val) : this.categoryEquipment.slice()));
-
+      if(this.categ){
+        this.selectCategory();
+      }
     });
-    if(this.categ !== undefined){
-      this.selectCategory();
-    }
+
   }
   private _filter(value: CategoryEquipment): CategoryEquipment[] {
-    const filterValue = value.name.toLowerCase();
+    const filterValue = value?.name.toLowerCase();
 
     return this.categoryEquipment.filter(option => option.name.toLowerCase().includes(filterValue));
   }
@@ -45,7 +45,6 @@ export class SelectCategoryEquipmentComponent implements OnInit {
 
   selectCategory(){
       for( let cat of this.categoryEquipment){
-        console.log(cat.id +' '+ )
         if( cat.id === this.categ?.id ){
           this.myControl.setValue(cat);
         }

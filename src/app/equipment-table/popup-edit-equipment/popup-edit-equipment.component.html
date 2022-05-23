@@ -1,9 +1,17 @@
-<h1 mat-dialog-title>Редактирование {{data.category_equipment.name}} № {{data.id}}</h1>
+<h1 mat-dialog-title>Редактирование {{data.category_equipment?.name}} № {{data.id}}</h1>
 <mat-dialog-content>
   <div class = "row">
-    <app-select-category-equipment [categ]="data.category_equipment" (Change)="onChangecategory_equipment($event)"></app-select-category-equipment>
+    <app-select-category-equipment [categ]="data.category_equipment?data.category_equipment: undefined" (Change)="onChangecategory_equipment($event)"></app-select-category-equipment>
+    <app-select-otdel [ot]="data.otdel?data.otdel:undefined" (Change)="onChangeOtdel($event)"></app-select-otdel>
+    <app-select-user [us]="data.user?data.user:undefined" (Change)="onChangeUser($event)"></app-select-user>
   </div>
+  <hr>
+  <div class = "row">
+    <h2>Добавление/Редактирование компонентов</h2>
+    <app-select-component></app-select-component>
+  </div>
+  <hr>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions align="end">
   <button mat-button mat-dialog-close="">Закрыть</button>
 </mat-dialog-actions>

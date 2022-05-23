@@ -10,7 +10,7 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class PageRabMestComponent implements OnInit {
   otdels:Otdel[]=[];
-  selectOtdel: Otdel | null = null;
+  selectOtdel: Otdel | undefined;
   dataSourceUsers = new MatTableDataSource<User>();
   dataSourceEquipment = new MatTableDataSource<Equipment>();
   constructor(private api:ApiService) { }
@@ -30,6 +30,10 @@ export class PageRabMestComponent implements OnInit {
     this.api.findEquipmentByOtdel(this.selectOtdel).subscribe( data => {
       this.dataSourceEquipment = new MatTableDataSource<Equipment>(data);
     });
-
+  }
+  addEquipment(){
+    this.api.createEquipment(this.selectOtdel).subscribe( data => {
+      return this.dataSourceEquipment = new MatTableDataSource<Equipment>(data);
+    });
   }
 }

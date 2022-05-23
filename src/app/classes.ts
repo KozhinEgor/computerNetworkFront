@@ -5,6 +5,7 @@ export interface User{
   dolzhnost:string;
   otdel:Otdel;
 }
+class checkUser{}
 export interface UserA{
   email:string;
 }
@@ -15,9 +16,9 @@ export interface Otdel{
 export interface Equipment{
   id:number;
   name:string;
-  user:User;
-  category_equipment:CategoryEquipment;
-  otdel:Otdel;
+  user:User | null;
+  category_equipment:CategoryEquipment | null;
+  otdel:Otdel | null;
 }
 export interface CategoryEquipment{
   id:number;
@@ -32,4 +33,26 @@ export interface ComponentsEquipment{
 export interface Component{
   id:number;
   name:string;
+}
+export interface CategoryComponent{
+  id:number;
+  name:string;
+}
+export interface Vendor{
+  id:number;
+  name:string;
+}
+export interface Components{
+  id:number;
+  name:string;
+  characteristick:string;
+  srock:Date;
+  equipment:Equipment;
+  vendor:Vendor;
+}
+export interface ComponentEquipment{
+  id:number;
+  number:number;
+  component:Component;
+  equipment:Equipment;
 }

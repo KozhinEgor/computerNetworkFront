@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ApiService} from "../../api";
-import {CategoryEquipment, ComponentsEquipment, Equipment} from "../../classes";
+import {CategoryEquipment, ComponentsEquipment, Equipment, Otdel, User} from "../../classes";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
@@ -19,8 +19,24 @@ export class PopupEditEquipmentComponent implements OnInit {
     // })
   }
   onChangecategory_equipment(t: any){
-    if(t as CategoryEquipment && t.id !== this.data.category_equipment.id){
+    if(t as CategoryEquipment && t.id !== this.data.category_equipment?.id){
       this.data.category_equipment = t;
+      this.api.updateEquipment(this.data).subscribe(data => {
+        this.data = data;
+      })
+    }
+  }
+  onChangeOtdel(t:any){
+    if(t as Otdel && t.id !== this.data.otdel?.id){
+      this.data.otdel = t;
+      this.api.updateEquipment(this.data).subscribe(data => {
+        this.data = data;
+      })
+    }
+  }
+  onChangeUser(t:any){
+    if(t as User && t.email !== this.data.user?.email){
+      this.data.user = t;
       this.api.updateEquipment(this.data).subscribe(data => {
         this.data = data;
       })

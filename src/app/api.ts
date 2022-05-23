@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {CategoryEquipment, ComponentsEquipment, Equipment, Otdel, User, UserA} from "./classes";
+import {CategoryEquipment, Components, ComponentsEquipment, Equipment, Otdel, User, UserA} from "./classes";
 import {environment} from "../environments/environment";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {Router} from "@angular/router";
@@ -34,8 +34,24 @@ export class ApiService {
       map(posts => posts as Otdel[])
     );
   }
+  findAllFreeComponents(){
+    return this.http.get(this.host+'/findAllFreeComponents').pipe(
+      map(posts => posts as Components[])
+    );
+  }
+  findAllComponent(){
+    return this.http.get(this.host+'/findAllComponent').pipe(
+      map(posts => posts as Components[])
+    );
+  }
   findUserByOtdel(otdel:Otdel){
     return this.http.post(this.host + '/findUserByOtdel',otdel).pipe(
+      map(posts => posts as User[])
+    )
+  }
+
+  findUsers(){
+    return this.http.get(this.host + '/findUser').pipe(
       map(posts => posts as User[])
     )
   }
@@ -55,6 +71,11 @@ export class ApiService {
   }
 
   updateEquipment(equipment:Equipment){
-    return this.http.put(this.http + '/Equipment', equipment).pipe(map(post => post as Equipment))
+    return this.http.put(this.host + '/Equipment', equipment).pipe(map(post => post as Equipment))
   }
+
+  createEquipment(otdel: Otdel | undefined){
+    return this.http.post(this.host + '/equipmentCreate', otdel).pipe(map(post => post as Equipment[]))
+  }
+
 }
