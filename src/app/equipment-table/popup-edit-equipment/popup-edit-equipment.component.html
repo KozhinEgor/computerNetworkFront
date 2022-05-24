@@ -8,9 +8,26 @@
   <hr>
   <div class = "row">
     <h2>Добавление/Редактирование компонентов</h2>
+  </div>
+  <div class = "row">
     <app-select-component></app-select-component>
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Количество</mat-label>
+      <input matInput type="number" [(ngModel)]="num">
+      <button *ngIf="num" matSuffix mat-icon-button aria-label="Clear" (click)="num=0">
+        <mat-icon>close</mat-icon>
+      </button>
+
+    </mat-form-field>
+    <button mat-mini-fab (click)="addComp()">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
   <hr>
+  <div class="row" style = "width:100% ">
+    <app-table-component-equipment [eq]="data"></app-table-component-equipment>
+  </div>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close="">Закрыть</button>

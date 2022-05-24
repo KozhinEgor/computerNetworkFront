@@ -1,0 +1,49 @@
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- 'vendor','name','category', 'characteristick', 'srock', 'number', 'delete' -->
+
+  <ng-container matColumnDef="vendor">
+    <th mat-header-cell *matHeaderCellDef> производитель </th>
+    <td mat-cell *matCellDef="let element"> {{element.comp.vendor.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Название </th>
+    <td mat-cell *matCellDef="let element"> {{element.comp.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef> Категория </th>
+    <td mat-cell *matCellDef="let element"> {{element.comp.categoryComponent.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="characteristick">
+    <th mat-header-cell *matHeaderCellDef> Характеристики </th>
+    <td mat-cell *matCellDef="let element"> {{element.comp.characteristick}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="srock">
+    <th mat-header-cell *matHeaderCellDef> Сроку годности </th>
+    <td mat-cell *matCellDef="let element"> {{element.comp.srock }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef> Количество </th>
+    <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Удалить </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="delete(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { PageAuthComponent } from './page-auth/page-auth.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -29,6 +29,7 @@ import { SelectOtdelComponent } from './select-otdel/select-otdel.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { ComponentTableComponent } from './component-table/component-table.component';
 import { SelectComponentComponent } from './select-component/select-component.component';
+import { TableComponentEquipmentComponent } from './table-component-equipment/table-component-equipment.component';
 
 
 const routes = [
@@ -52,7 +53,8 @@ const routes = [
     SelectCategoryEquipmentComponent,
     SelectOtdelComponent,
     ComponentTableComponent,
-    SelectComponentComponent
+    SelectComponentComponent,
+    TableComponentEquipmentComponent
   ],
     imports: [
         AppRoutingModule,
@@ -72,7 +74,8 @@ const routes = [
         MatExpansionModule,
         MatTableModule,
         MatDialogModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

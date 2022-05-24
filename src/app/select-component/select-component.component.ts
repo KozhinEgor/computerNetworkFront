@@ -14,9 +14,9 @@ export class SelectComponentComponent implements OnInit {
   @Output() Change = new EventEmitter<number>();
   myControl = new FormControl();
   component: Components[] = [];
-  filteredOptions: Observable<Components[]> | undefined;
+  filteredOptions: Observable<Components[]>;
   constructor(private api: ApiService) {
-
+this.filteredOptions = new Observable<Components[]>();
   }
 
   ngOnInit(): void {
@@ -31,7 +31,8 @@ export class SelectComponentComponent implements OnInit {
 
   }
   private _filter(value: Components): Components[] {
-    const filterValue = value.name.toLowerCase();
+    console.log(value)
+    const filterValue = value?.name.toLowerCase();
 
     return this.component.filter(option => option.name.toLowerCase().includes(filterValue));
   }

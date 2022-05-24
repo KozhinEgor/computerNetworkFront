@@ -24,12 +24,7 @@ export interface CategoryEquipment{
   id:number;
   name:string;
 }
-export interface ComponentsEquipment{
-  id: number;
-  number:number;
-  equipment:Equipment;
-  component:Component
-}
+
 export interface Component{
   id:number;
   name:string;
@@ -37,6 +32,7 @@ export interface Component{
 export interface CategoryComponent{
   id:number;
   name:string;
+
 }
 export interface Vendor{
   id:number;
@@ -47,12 +43,12 @@ export interface Components{
   name:string;
   characteristick:string;
   srock:Date;
-  equipment:Equipment;
+  categoryComponent:CategoryComponent;
   vendor:Vendor;
 }
 export interface ComponentEquipment{
   id:number;
   number:number;
-  component:Component;
+  comp:Component;
   equipment:Equipment;
 }

@@ -1,6 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {CategoryEquipment, Components, ComponentsEquipment, Equipment, Otdel, User, UserA} from "./classes";
+import {
+  CategoryEquipment,
+  ComponentEquipment,
+  Components,
+  Equipment,
+  Otdel,
+  User,
+  UserA
+} from "./classes";
 import {environment} from "../environments/environment";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {Router} from "@angular/router";
@@ -44,6 +52,15 @@ export class ApiService {
       map(posts => posts as Components[])
     );
   }
+
+  findAllByEquipment(eq: Equipment | undefined){
+    return this.http.post(this.host+'/findAllByEquipment', eq).pipe(
+      map(posts => posts as ComponentEquipment[])
+    );
+  }
+  deleteComponentEquipment(eqCo:ComponentEquipment){
+    return this.http.post("/deletecomponentEquipment",eqCo).pipe(map(data => data as ComponentEquipment[]))
+  }
   findUserByOtdel(otdel:Otdel){
     return this.http.post(this.host + '/findUserByOtdel',otdel).pipe(
       map(posts => posts as User[])
@@ -63,7 +80,7 @@ export class ApiService {
   }
 
   findComponentsEquipmentByEquipment(eq:Equipment){
-    return this.http.post(this.host + '/findComponentsEquipmentByEquipment',eq).pipe(map(posts => posts as ComponentsEquipment[]))
+    return this.http.post(this.host + '/findComponentsEquipmentByEquipment',eq).pipe(map(posts => posts as ComponentEquipment[]))
   }
 
   findAllCategoryEquipment(){
@@ -77,5 +94,7 @@ export class ApiService {
   createEquipment(otdel: Otdel | undefined){
     return this.http.post(this.host + '/equipmentCreate', otdel).pipe(map(post => post as Equipment[]))
   }
-
+  addEqComp(eqCO: ComponentEquipment){
+    return this.http.post(this.host + '/addEqComp',eqCO).pipe(map(posts => posts as ComponentEquipment[]))
+  }
 }
