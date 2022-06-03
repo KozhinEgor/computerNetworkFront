@@ -16,19 +16,15 @@ export interface Otdel{
 export interface Equipment{
   id:number;
   name:string;
-  user:User | null;
-  category_equipment:CategoryEquipment | null;
-  otdel:Otdel | null;
+  user:User ;
+  category_equipment:CategoryEquipment ;
+  otdel:Otdel ;
 }
 export interface CategoryEquipment{
   id:number;
   name:string;
 }
 
-export interface Component{
-  id:number;
-  name:string;
-}
 export interface CategoryComponent{
   id:number;
   name:string;
@@ -49,6 +45,9 @@ export interface Components{
 export interface ComponentEquipment{
   id:number;
   number:number;
-  comp:Component;
+  comp:Components;
   equipment:Equipment;
+}
+export interface DialogExportData{
+  text: string;
 }

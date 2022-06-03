@@ -59,7 +59,7 @@ export class ApiService {
     );
   }
   deleteComponentEquipment(eqCo:ComponentEquipment){
-    return this.http.post("/deletecomponentEquipment",eqCo).pipe(map(data => data as ComponentEquipment[]))
+    return this.http.post(this.host+"/deletecomponentEquipment",eqCo).pipe(map(data => data as ComponentEquipment[]))
   }
   findUserByOtdel(otdel:Otdel){
     return this.http.post(this.host + '/findUserByOtdel',otdel).pipe(
@@ -96,5 +96,8 @@ export class ApiService {
   }
   addEqComp(eqCO: ComponentEquipment){
     return this.http.post(this.host + '/addEqComp',eqCO).pipe(map(posts => posts as ComponentEquipment[]))
+  }
+  deleteEquipment(eq:Equipment){
+    return this.http.post(this.host + '/deleteEquipment',eq).pipe(map(posts => posts as Equipment[]))
   }
 }

@@ -4,6 +4,7 @@ import {ComponentEquipment, Equipment} from "../classes";
 import {MatDialog} from "@angular/material/dialog";
 import {PopupEditEquipmentComponent} from "../equipment-table/popup-edit-equipment/popup-edit-equipment.component";
 import {ApiService} from "../api";
+import {DialogSelectComponent} from "../dialog-select/dialog-select.component";
 
 @Component({
   selector: 'app-table-component-equipment',
@@ -14,7 +15,7 @@ export class TableComponentEquipmentComponent implements OnInit {
   displayedColumns = [ 'vendor','name','category', 'characteristick', 'srock', 'number', 'delete'];
   dataSource = new MatTableDataSource<ComponentEquipment>();
   @Input() eq:Equipment | undefined;
-  constructor(public api:ApiService) { }
+  constructor(public api:ApiService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.update();
@@ -25,8 +26,13 @@ export class TableComponentEquipmentComponent implements OnInit {
     })
   }
   delete(eqCo:ComponentEquipment){
-    this.api.deleteComponentEquipment(eqCo).subscribe( data => {
-      this.dataSource = new MatTableDataSource<ComponentEquipment>(data);
+    this.dialog.open(DialogSelectComponent,{data:{text:'Вы действительно хотите удалить '+eqCo.number + ' ' + eqCo.comp.vendor.name + ' ' + eqCo.comp.name + ' из ' + eqCo.equipment.name}}).afterClosed().subscribe(data =>{
+      if(data){
+        this.api.deleteComponentEquipment(eqCo).subscribe( data => {
+          this.dataSource = new MatTableDataSource<ComponentEquipment>(data);
+        })
+      }
     })
+
   }
 }

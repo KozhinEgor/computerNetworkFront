@@ -7,3 +7,12 @@
 app-table-component-equipment{
   width: 80%;
 }
+.spacer {
+  flex-grow: 1;
+}
+.fixActionRow {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.mat-dialog-content { max-height: 100%; }

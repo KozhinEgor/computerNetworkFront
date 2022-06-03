@@ -26,7 +26,7 @@ export class SelectUserComponent implements OnInit {
       this.user = data;
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
+        map(value => typeof value === 'string' ? value : value.fio),
         map(val => val ? this._filter(val) : this.user.slice()));
       if(this.us){
         this.selectCategory();
@@ -34,8 +34,8 @@ export class SelectUserComponent implements OnInit {
     });
 
   }
-  private _filter(value: User): User[] {
-    const filterValue = value.fio.toLowerCase();
+  private _filter(value: string): User[] {
+    const filterValue = value.toLowerCase();
 
     return this.user.filter(option => option.fio.toLowerCase().includes(filterValue));
   }

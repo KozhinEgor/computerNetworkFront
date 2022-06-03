@@ -13,28 +13,26 @@ export class SelectComponentComponent implements OnInit {
 
   @Output() Change = new EventEmitter<number>();
   myControl = new FormControl();
-  component: Components[] = [];
-  filteredOptions: Observable<Components[]>;
+  components: Components[] = [];
+  filteredOptions: Observable<Components[]> | undefined;
   constructor(private api: ApiService) {
-this.filteredOptions = new Observable<Components[]>();
   }
 
   ngOnInit(): void {
     this.api.findAllComponent().subscribe(data =>
     {
-      this.component = data;
+      this.components = data;
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => typeof value === 'string' ? value : value.name),
-        map(val => val ? this._filter(val) : this.component.slice()));
+        map(val => val ? this._filter(val) : this.components.slice()));
     });
 
   }
-  private _filter(value: Components): Components[] {
-    console.log(value)
-    const filterValue = value?.name.toLowerCase();
+  private _filter(value: string): Components[] {
+    const filterValue = value.toLowerCase();
 
-    return this.component.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.components.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
   displayFn(category: Components): string {

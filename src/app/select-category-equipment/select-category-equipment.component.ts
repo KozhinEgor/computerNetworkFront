@@ -33,8 +33,8 @@ export class SelectCategoryEquipmentComponent implements OnInit {
     });
 
   }
-  private _filter(value: CategoryEquipment): CategoryEquipment[] {
-    const filterValue = value?.name.toLowerCase();
+  private _filter(value: string): CategoryEquipment[] {
+    const filterValue = value.toLowerCase();
 
     return this.categoryEquipment.filter(option => option.name.toLowerCase().includes(filterValue));
   }

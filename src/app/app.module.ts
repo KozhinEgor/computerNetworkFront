@@ -30,6 +30,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { ComponentTableComponent } from './component-table/component-table.component';
 import { SelectComponentComponent } from './select-component/select-component.component';
 import { TableComponentEquipmentComponent } from './table-component-equipment/table-component-equipment.component';
+import { DialogSelectComponent } from './dialog-select/dialog-select.component';
 
 
 const routes = [
@@ -54,7 +55,8 @@ const routes = [
     SelectOtdelComponent,
     ComponentTableComponent,
     SelectComponentComponent,
-    TableComponentEquipmentComponent
+    TableComponentEquipmentComponent,
+    DialogSelectComponent
   ],
     imports: [
         AppRoutingModule,

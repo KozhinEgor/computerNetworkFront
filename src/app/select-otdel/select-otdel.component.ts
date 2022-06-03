@@ -34,8 +34,8 @@ export class SelectOtdelComponent implements OnInit {
     });
 
   }
-  private _filter(value: Otdel): Otdel[] {
-    const filterValue = value?.name.toLowerCase();
+  private _filter(value: string): Otdel[] {
+    const filterValue = value.toLowerCase();
 
     return this.otdel.filter(option => option?.name.toLowerCase().includes(filterValue));
   }

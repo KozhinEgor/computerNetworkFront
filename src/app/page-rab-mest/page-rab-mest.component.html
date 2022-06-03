@@ -29,7 +29,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button mat-button (click)="addEquipment()">Добавить</button>
-        <app-equipment-table [dataSource]="dataSourceEquipment"></app-equipment-table>
+        <app-equipment-table [otdel]="selectOtdel"></app-equipment-table>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-drawer-content>

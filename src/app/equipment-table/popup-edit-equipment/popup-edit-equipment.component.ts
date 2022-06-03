@@ -1,10 +1,11 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ApiService} from "../../api";
 import {CategoryEquipment, ComponentEquipment, Equipment, Otdel, User} from "../../classes";
 import {MatTableDataSource} from "@angular/material/table";
 import {SelectComponentComponent} from "../../select-component/select-component.component";
 import {TableComponentEquipmentComponent} from "../../table-component-equipment/table-component-equipment.component";
+import {DialogSelectComponent} from "../../dialog-select/dialog-select.component";
 
 @Component({
   selector: 'app-popup-edit-equipment',
@@ -12,14 +13,15 @@ import {TableComponentEquipmentComponent} from "../../table-component-equipment/
   styleUrls: ['./popup-edit-equipment.component.css']
 })
 export class PopupEditEquipmentComponent implements OnInit {
-  @ViewChild("SelectComponentComponent")
+  @ViewChild(SelectComponentComponent)
   private s: SelectComponentComponent;
 
-  @ViewChild("TableComponentEquipmentComponent")
-  private tableComponentEquipmentComponent: TableComponentEquipmentComponent | undefined;
+  @ViewChild(TableComponentEquipmentComponent)
+  private table!: TableComponentEquipmentComponent;
+
   dataSource = new MatTableDataSource<ComponentEquipment>();
   num:number = 0;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Equipment, private api: ApiService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Equipment, private api: ApiService, private dialog:MatDialog) {
     this.s = new SelectComponentComponent(api);
   }
 
@@ -53,9 +55,11 @@ export class PopupEditEquipmentComponent implements OnInit {
     }
   }
   addComp(){
-  console.log(this.s?.myControl.value);
-      this.api.addEqComp({id:0,number:this.num,equipment:this.data,comp:this.s?.myControl.value}).subscribe(data => {
-        this.tableComponentEquipmentComponent?.update();
+    if(this.num>0 && typeof this.s.myControl.value !== "string" && this.s.myControl.value !== null && this.s.myControl.value !== undefined)
+      this.api.addEqComp({id:0,number:this.num,equipment:this.data,comp:this.s.myControl.value}).subscribe(data => {
+        this.table.update();
+        this.s.myControl.setValue('');
+        this.num=0;
       })
     }
 
