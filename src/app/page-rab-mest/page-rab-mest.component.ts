@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../api";
 import {Equipment, Otdel, User} from "../classes";
 import {MatTableDataSource} from "@angular/material/table";
+import {EquipmentTableComponent} from "../equipment-table/equipment-table.component";
 
 @Component({
   selector: 'app-page-rab-mest',
@@ -10,9 +11,12 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class PageRabMestComponent implements OnInit {
   otdels:Otdel[]=[];
-  selectOtdel: Otdel | undefined;
+  selectOtdel: Otdel ={id:0, name:''};
   dataSourceUsers = new MatTableDataSource<User>();
-  dataSourceEquipment = new MatTableDataSource<Equipment>();
+  countEquipment: number = 0;
+  @ViewChild(EquipmentTableComponent)
+  private equipmentTableComponent:EquipmentTableComponent;
+
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
@@ -27,13 +31,15 @@ export class PageRabMestComponent implements OnInit {
     this.api.findUserByOtdel(this.selectOtdel).subscribe( data => {
         this.dataSourceUsers = new MatTableDataSource<User>(data);
     });
-    this.api.findEquipmentByOtdel(this.selectOtdel).subscribe( data => {
-      this.dataSourceEquipment = new MatTableDataSource<Equipment>(data);
-    });
+    this.api.findCountEquipmentByOtdel(this.selectOtdel).subscribe(data =>{
+      this.countEquipment = data;
+    })
+    this.equipmentTableComponent.update(this.selectOtdel);
   }
   addEquipment(){
-    this.api.createEquipment(this.selectOtdel).subscribe( data => {
-      return this.dataSourceEquipment = new MatTableDataSource<Equipment>(data);
-    });
+    this.equipmentTableComponent.addEquipment();
+    this.api.findCountEquipmentByOtdel(this.selectOtdel).subscribe(data =>{
+      this.countEquipment = data;
+    })
   }
 }

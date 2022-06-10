@@ -12,25 +12,27 @@ import {ApiService} from "../api";
   styleUrls: ['./equipment-table.component.css']
 })
 export class EquipmentTableComponent implements OnInit {
-  displayedColumns = ['id','name','otdel', 'user', 'categoryEquipment', 'edit', 'delete'];
-  @Input() otdel: Otdel = {id:0,name:''};
-  @Input() dataSource = new MatTableDataSource<Equipment>();
+  displayedColumns = ['id','name','otdel', 'user', 'categoryEquipment', 'edit'];
+  otdel: Otdel = {id:0,name:''};
+   dataSource = new MatTableDataSource<Equipment>();
   constructor(public dialog: MatDialog,private api:ApiService) { }
 
   ngOnInit(): void {
   }
-  update()
+  update(otdel:Otdel){
+    this.otdel = otdel;
+    this.api.findEquipmentByOtdel(this.otdel).subscribe(data => {
+      this.dataSource = new MatTableDataSource<Equipment>(data);
+    });
+  }
   openEdit(eq:Equipment){
     this.dialog.open(PopupEditEquipmentComponent, {width: '80%',
-      height: '90%',data: eq})
+      height: '90%',data: eq}).afterClosed().subscribe(data => {this.update(this.otdel)})
   }
-  delete(eq:Equipment){
-    this.dialog.open(DialogSelectComponent,{data:{text:'Вы хотите разобрать оборудование'}}).afterClosed().subscribe(data=>{
-      if(data){
-        this.api.deleteEquipment(eq).subscribe(data => {
-          this.dataSource = new MatTableDataSource<Equipment>(data)
-        })
-      }
-    })
+
+  addEquipment(){
+    this.api.createEquipment(this.otdel).subscribe( data => {
+      return this.dataSource = new MatTableDataSource<Equipment>(data);
+    });
   }
 }

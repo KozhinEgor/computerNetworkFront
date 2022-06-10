@@ -31,6 +31,10 @@ import { ComponentTableComponent } from './component-table/component-table.compo
 import { SelectComponentComponent } from './select-component/select-component.component';
 import { TableComponentEquipmentComponent } from './table-component-equipment/table-component-equipment.component';
 import { DialogSelectComponent } from './dialog-select/dialog-select.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { SelectProgramKeyComponent } from './select-program-key/select-program-key.component';
+import { ProgramEquipmentComponent } from './program-equipment/program-equipment.component';
+import { ErrorComponent } from './error/error.component';
 
 
 const routes = [
@@ -56,7 +60,10 @@ const routes = [
     ComponentTableComponent,
     SelectComponentComponent,
     TableComponentEquipmentComponent,
-    DialogSelectComponent
+    DialogSelectComponent,
+    SelectProgramKeyComponent,
+    ProgramEquipmentComponent,
+    ErrorComponent
   ],
     imports: [
         AppRoutingModule,
@@ -77,7 +84,8 @@ const routes = [
         MatTableModule,
         MatDialogModule,
         MatAutocompleteModule,
-        FormsModule
+        FormsModule,
+        MatTabsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@ import {
   ComponentEquipment,
   Components,
   Equipment,
-  Otdel,
+  Otdel, ProgramKey, ProgramKeyEquipment, Sklad,
   User,
   UserA
 } from "./classes";
@@ -52,14 +52,39 @@ export class ApiService {
       map(posts => posts as Components[])
     );
   }
+  findFreeComponent(){
+    return this.http.get(this.host+'/findFreeComponent').pipe(
+      map(posts => posts as Sklad[])
+    );
+  }
 
+  findFreeProgramKeys(){
+    return this.http.get(this.host+'/findFreeProgramKeys').pipe(
+      map(posts => posts as ProgramKey[])
+    );
+  }
   findAllByEquipment(eq: Equipment | undefined){
     return this.http.post(this.host+'/findAllByEquipment', eq).pipe(
       map(posts => posts as ComponentEquipment[])
     );
   }
+  razobrat(eq: Equipment | undefined){
+    return this.http.post(this.host+'/razobrat', eq).pipe(
+      map(posts => posts as string)
+    );
+  }
+
+  findAllProgramByEquipment(eq: Equipment | undefined){
+    return this.http.post(this.host+'/findAllProgramByEquipment', eq).pipe(
+      map(posts => posts as ProgramKeyEquipment[])
+    );
+  }
+
   deleteComponentEquipment(eqCo:ComponentEquipment){
     return this.http.post(this.host+"/deletecomponentEquipment",eqCo).pipe(map(data => data as ComponentEquipment[]))
+  }
+  deleteProgramEquipment(eqCo:ProgramKeyEquipment){
+    return this.http.post(this.host+"/deleteProgramEquipment",eqCo).pipe(map(data => data as ProgramKeyEquipment[]))
   }
   findUserByOtdel(otdel:Otdel){
     return this.http.post(this.host + '/findUserByOtdel',otdel).pipe(
@@ -76,6 +101,11 @@ export class ApiService {
   findEquipmentByOtdel(otdel:Otdel){
     return this.http.post(this.host + '/findEquipmentByOtdel',otdel).pipe(
       map(posts => posts as Equipment[])
+    )
+  }
+  findCountEquipmentByOtdel(otdel:Otdel){
+    return this.http.post(this.host + '/findCountEquipmentByOtdel',otdel).pipe(
+      map(posts => posts as number)
     )
   }
 
@@ -96,6 +126,9 @@ export class ApiService {
   }
   addEqComp(eqCO: ComponentEquipment){
     return this.http.post(this.host + '/addEqComp',eqCO).pipe(map(posts => posts as ComponentEquipment[]))
+  }
+  addProgrammEq(programEq:ProgramKeyEquipment){
+    return this.http.post(this.host + '/addProgrammEq',programEq).pipe(map(posts => posts as ProgramKeyEquipment[]))
   }
   deleteEquipment(eq:Equipment){
     return this.http.post(this.host + '/deleteEquipment',eq).pipe(map(posts => posts as Equipment[]))

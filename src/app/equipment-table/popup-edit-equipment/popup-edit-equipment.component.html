@@ -1,34 +1,63 @@
 <div class = "fixActionRow">
   <h1 mat-dialog-title>Редактирование {{data.category_equipment?.name}} № {{data.id}}</h1>
   <mat-dialog-content>
-    <div class = "row">
-      <app-select-category-equipment [categ]="data.category_equipment?data.category_equipment: undefined" (Change)="onChangecategory_equipment($event)"></app-select-category-equipment>
-      <app-select-otdel [ot]="data.otdel?data.otdel:undefined" (Change)="onChangeOtdel($event)"></app-select-otdel>
-      <app-select-user [us]="data.user?data.user:undefined" (Change)="onChangeUser($event)"></app-select-user>
-      <button mat-button color="warn" (click)="delete()">Разобрать</button>
-    </div>
-    <hr>
-    <div class = "row">
-      <h2>Добавление/Редактирование компонентов</h2>
-    </div>
-    <div class = "row">
-      <app-select-component></app-select-component>
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Количество</mat-label>
-        <input matInput type="number" [(ngModel)]="num">
-        <button *ngIf="num" matSuffix mat-icon-button aria-label="Clear" (click)="num=0">
-          <mat-icon>close</mat-icon>
-        </button>
+    <div>
+      <div class = "row">
+        <button mat-button color="warn" (click)="delete()">Разобрать</button>
+        <app-select-otdel [ot]="data.otdel?data.otdel:undefined" (Change)="onChangeOtdel($event)"></app-select-otdel>
+        <app-select-user [us]="data.user?data.user:undefined" (Change)="onChangeUser($event)"></app-select-user>
+      </div>
+      <div class="row">
+        <app-select-category-equipment [categ]="data.category_equipment?data.category_equipment: undefined" (Change)="onChangecategory_equipment($event)"></app-select-category-equipment>
 
-      </mat-form-field>
-      <button mat-mini-fab (click)="addComp()">
-        <mat-icon>add</mat-icon>
-      </button>
+        <mat-form-field class="example-form-field" appearance="legacy">
+          <mat-label>Название</mat-label>
+          <input matInput type="text" [(ngModel)]="data.name">
+          <button *ngIf="data.name" matSuffix mat-icon-button aria-label="Clear" (click)="data.name =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="changeName()">Сохранить название</button>
+      </div>
+
+
     </div>
     <hr>
-    <div class="row" style = "width:100% ">
-      <app-table-component-equipment [eq]="data"></app-table-component-equipment>
-    </div>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Компоненты">
+        <div class = "row"  style="margin-top: 10px">
+          <app-select-component></app-select-component>
+          <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Количество</mat-label>
+            <input matInput type="number" [(ngModel)]="num">
+            <button *ngIf="num" matSuffix mat-icon-button aria-label="Clear" (click)="num=0">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <button mat-mini-fab (click)="addComp()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <hr>
+        <div class="row" >
+          <app-table-component-equipment [eq]="data" ></app-table-component-equipment>
+        </div>
+      </mat-tab>
+      <mat-tab label="Лицензии">
+        <div class = "row" style="margin-top: 10px">
+          <app-select-program-key></app-select-program-key>
+          <button mat-mini-fab (click)="addProgram()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <hr>
+        <div class="row">
+          <app-program-equipment [eq]="data" style = "width:80% "></app-program-equipment>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+
 
   </mat-dialog-content>
   <div class="spacer"></div>

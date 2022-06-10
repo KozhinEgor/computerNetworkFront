@@ -51,3 +51,25 @@ export interface ComponentEquipment{
 export interface DialogExportData{
   text: string;
 }
+export interface Program{
+  id: number;
+  name: string;
+}
+export interface ProgramKey{
+  id: number;
+  name:string;
+  program:Program;
+  value:string;
+  date_start:Date;
+  date_finish:Date;
+}
+export interface ProgramKeyEquipment{
+  id: number;
+  equipment:Equipment;
+  programKey:ProgramKey;
+}
+export interface Sklad{
+  id:number;
+  component:Components;
+  number:number;
+}
