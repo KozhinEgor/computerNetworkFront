@@ -21,7 +21,6 @@ import { UserTableComponent } from './user-table/user-table.component';
 import {MatTableModule} from "@angular/material/table";
 import { EquipmentTableComponent } from './equipment-table/equipment-table.component';
 import { PopupEditEquipmentComponent } from './equipment-table/popup-edit-equipment/popup-edit-equipment.component';
-import { PopupEditUserComponent } from './user-table/popup-edit-user/popup-edit-user.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { SelectUserComponent } from './select-user/select-user.component';
 import { SelectCategoryEquipmentComponent } from './select-category-equipment/select-category-equipment.component';
@@ -35,11 +34,18 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { SelectProgramKeyComponent } from './select-program-key/select-program-key.component';
 import { ProgramEquipmentComponent } from './program-equipment/program-equipment.component';
 import { ErrorComponent } from './error/error.component';
+import { PopupEditSotrudnickComponent } from './user-table/popup-edit-sotrudnick/popup-edit-sotrudnick.component';
+import { PageSkladComponent } from './page-sklad/page-sklad.component';
+import { ReestrComponentovComponent } from './reestr-componentov/reestr-componentov.component';
+import { VendorComponent } from './vendor/vendor.component';
+import { CategoryaComplectComponent } from './categorya-complect/categorya-complect.component';
 
 
 const routes = [
   {path:'auth', component: PageAuthComponent},
   {path:'rab-mest', component: PageRabMestComponent},
+  {path:'sklad', component: PageSkladComponent},
+  {path:'component', component: ReestrComponentovComponent},
   {path:'home', component: PageHomeComponent},
   {path: '**', redirectTo:'home'}
 ];
@@ -53,7 +59,6 @@ const routes = [
     UserTableComponent,
     EquipmentTableComponent,
     PopupEditEquipmentComponent,
-    PopupEditUserComponent,
     SelectUserComponent,
     SelectCategoryEquipmentComponent,
     SelectOtdelComponent,
@@ -63,7 +68,12 @@ const routes = [
     DialogSelectComponent,
     SelectProgramKeyComponent,
     ProgramEquipmentComponent,
-    ErrorComponent
+    ErrorComponent,
+    PopupEditSotrudnickComponent,
+    PageSkladComponent,
+    ReestrComponentovComponent,
+    VendorComponent,
+    CategoryaComplectComponent
   ],
     imports: [
         AppRoutingModule,

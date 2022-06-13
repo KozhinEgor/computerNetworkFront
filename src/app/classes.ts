@@ -38,7 +38,6 @@ export interface Components{
   id:number;
   name:string;
   characteristick:string;
-  srock:Date;
   categoryComponent:CategoryComponent;
   vendor:Vendor;
 }

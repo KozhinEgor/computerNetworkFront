@@ -46,7 +46,7 @@ export class SelectOtdelComponent implements OnInit {
 
   selectCategory(){
     for( let cat of this.otdel){
-      if( cat.id === this.ot?.id ){
+      if( cat.id === this.ot.id ){
         this.myControl.setValue(cat);
       }
     }

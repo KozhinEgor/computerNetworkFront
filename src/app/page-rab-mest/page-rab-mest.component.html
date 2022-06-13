@@ -16,11 +16,12 @@
       <mat-expansion-panel >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Сотрудники в отделе ({{dataSourceUsers.data.length}})
+            Сотрудники в отделе ({{countUsers}})
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-          <app-user-table [dataSource]="dataSourceUsers"></app-user-table>
+        <button mat-button (click)="addUser()">Добавить</button>
+          <app-user-table [otdel]="selectOtdel"></app-user-table>
       </mat-expansion-panel>
       <mat-expansion-panel >
         <mat-expansion-panel-header>

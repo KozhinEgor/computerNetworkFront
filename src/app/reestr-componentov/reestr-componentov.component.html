@@ -1,0 +1,59 @@
+<div class="row ChoseContainer mat-elevation-z8" >
+  <button mat-raised-button>
+    Создать производителя
+  </button>
+  <button mat-raised-button>
+    Создать категорию комплектующего
+  </button>
+  <button mat-raised-button>
+    Создать категорию оборудования
+  </button>
+</div>
+<mat-drawer-container class="container">
+
+
+  <mat-drawer mode="side" opened>
+    <mat-list>
+      <mat-list-item *ngFor="let comp of components"  [ngClass]="{'selectOtdel':comp === selectComp}" (click)="selectedComp(comp)">
+
+        {{comp.vendor.name}} {{comp.name}}
+
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="EditContainer">
+      <h4 class="card-header">Редактирование/Создание компонента</h4>
+      <!--          id, name? characteristick, categoryComponent, vendor, number-->
+      <div class="row">
+        <app-vendor class="pad" [categ]="selectComp.vendor"></app-vendor>
+        <mat-form-field class="example-form-field pad" appearance="legacy">
+          <mat-label>Название</mat-label>
+          <input matInput type="text" [(ngModel)]="selectComp.name">
+          <button *ngIf="selectComp.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectComp.name =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <app-categorya-complect class="pad" [categ]="selectComp.categoryComponent"></app-categorya-complect>
+        <mat-form-field class="example-form-field pad" appearance="legacy">
+          <mat-label>Характеристика</mat-label>
+          <input matInput type="text" [(ngModel)]="selectComp.characteristick">
+          <button *ngIf="selectComp.characteristick" matSuffix mat-icon-button aria-label="Clear" (click)="selectComp.characteristick =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <button mat-raised-button (click)="save()">
+          Сохранить
+        </button>
+        <button mat-raised-button color="warn" (click)="default()">
+          Сбросить
+        </button>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

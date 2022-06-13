@@ -1,0 +1,50 @@
+<div class="row ChoseContainer mat-elevation-z8" >
+  <button mat-raised-button>
+    Добавить компонент
+  </button>
+  <button mat-raised-button>
+    Создать сборку
+  </button>
+</div>
+<mat-drawer-container class="container">
+
+
+  <mat-drawer mode="side" opened>
+    <mat-list>
+      <mat-list-item *ngFor="let comp of components"  [ngClass]="{'selectOtdel':comp === selectComp}" (click)="selectedComp(comp)">
+
+        {{comp.component.vendor.name}} {{comp.component.name}} - {{comp.number}}
+
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+
+    <div class="EditContainer" *ngIf="selectComp.id != 0">
+        <h4 class="card-header">Редактирование склада</h4>
+          <!--          id, name? characteristick, categoryComponent, vendor, number-->
+          <div class="row">
+            <div class="text">
+              {{selectComp.component.vendor.name}} {{selectComp.component.name}} {{selectComp.component.characteristick}}
+            </div>
+            <mat-form-field class="example-form-field" appearance="legacy">
+              <mat-label>Количество</mat-label>
+              <input matInput type="number" [(ngModel)]="selectComp.number">
+              <button *ngIf="selectComp.number" matSuffix mat-icon-button aria-label="Clear" (click)="selectComp.number =0">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <button mat-raised-button (click)="save()">
+              Сохранить
+            </button>
+            <button mat-raised-button color="warn" (click)="delete()">
+              Списать
+            </button>
+          </div>
+
+      </div>
+  </mat-drawer-content>
+</mat-drawer-container>

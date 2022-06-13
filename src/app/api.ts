@@ -1,13 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {
+  CategoryComponent,
   CategoryEquipment,
   ComponentEquipment,
   Components,
   Equipment,
   Otdel, ProgramKey, ProgramKeyEquipment, Sklad,
   User,
-  UserA
+  UserA, Vendor
 } from "./classes";
 import {environment} from "../environments/environment";
 import {BehaviorSubject, map, Observable} from "rxjs";
@@ -108,13 +109,23 @@ export class ApiService {
       map(posts => posts as number)
     )
   }
-
+  findCountUserByOtdel(otdel:Otdel){
+    return this.http.post(this.host + '/findCountUserByOtdel',otdel).pipe(
+      map(posts => posts as number)
+    )
+  }
   findComponentsEquipmentByEquipment(eq:Equipment){
     return this.http.post(this.host + '/findComponentsEquipmentByEquipment',eq).pipe(map(posts => posts as ComponentEquipment[]))
   }
 
   findAllCategoryEquipment(){
     return this.http.get(this.host + '/findAllCategoryEquipment').pipe(map(gets => gets as CategoryEquipment[]))
+  }
+  findAllCategoryComponent(){
+    return this.http.get(this.host + '/findAllCategoryComponent').pipe(map(gets => gets as CategoryComponent[]))
+  }
+  findAllVendor(){
+    return this.http.get(this.host + '/findAllVendor').pipe(map(gets => gets as Vendor[]))
   }
 
   updateEquipment(equipment:Equipment){
@@ -133,4 +144,19 @@ export class ApiService {
   deleteEquipment(eq:Equipment){
     return this.http.post(this.host + '/deleteEquipment',eq).pipe(map(posts => posts as Equipment[]))
   }
+  saveUser(us:User){
+    return this.http.post(this.host + '/saveUser',us).pipe(map(posts => posts as User))
+  }
+  createUser(ot:Otdel){
+    return this.http.post(this.host + '/createUser',ot).pipe(map(posts => posts as User[]))
+  }
+  saveComponent(comp:Components){
+    console.log(comp);
+    return this.http.post(this.host + '/saveComponent', comp).pipe(map(posts => posts as Components[]))
+  }
+  updateSklad(comp:Sklad){
+    console.log(comp);
+    return this.http.post(this.host + '/updateSklad', comp).pipe(map(posts => posts as Sklad[]))
+  }
+
 }

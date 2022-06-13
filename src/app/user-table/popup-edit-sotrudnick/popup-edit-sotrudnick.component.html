@@ -1,0 +1,40 @@
+<div class = "fixActionRow">
+  <h1 mat-dialog-title>Редактирование {{data.fio}}</h1>
+  <mat-dialog-content>
+    <div>
+      <div class = "row">
+        <mat-form-field class="example-form-field" appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" [(ngModel)]="data.email">
+          <button *ngIf="data.email" matSuffix mat-icon-button aria-label="Clear" (click)="data.email =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="example-form-field" appearance="legacy">
+          <mat-label>ФИО</mat-label>
+          <input matInput type="text" [(ngModel)]="data.fio">
+          <button *ngIf="data.fio" matSuffix mat-icon-button aria-label="Clear" (click)="data.fio =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="example-form-field" appearance="legacy">
+          <mat-label>Должность</mat-label>
+          <input matInput type="text" [(ngModel)]="data.dolzhnost">
+          <button *ngIf="data.dolzhnost" matSuffix mat-icon-button aria-label="Clear" (click)="data.dolzhnost =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <app-select-otdel [ot]="data.otdel"></app-select-otdel>
+
+      </div>
+    </div>
+  </mat-dialog-content>
+  <div class="spacer"></div>
+  <mat-dialog-actions align="end">
+    <button mat-button color="primary" (click)="Save()">Сохранить</button>
+    <button mat-button mat-dialog-close="">Закрыть</button>
+  </mat-dialog-actions>
+
+</div>
