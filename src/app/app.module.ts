@@ -39,6 +39,10 @@ import { PageSkladComponent } from './page-sklad/page-sklad.component';
 import { ReestrComponentovComponent } from './reestr-componentov/reestr-componentov.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { CategoryaComplectComponent } from './categorya-complect/categorya-complect.component';
+import { AddComponentComponent } from './add-component/add-component.component';
+import { AddVendorComponent } from './add-vendor/add-vendor.component';
+import { AddCatEquipmentComponent } from './add-cat-equipment/add-cat-equipment.component';
+import { AddToScladComponent } from './add-to-sclad/add-to-sclad.component';
 
 
 const routes = [
@@ -73,7 +77,11 @@ const routes = [
     PageSkladComponent,
     ReestrComponentovComponent,
     VendorComponent,
-    CategoryaComplectComponent
+    CategoryaComplectComponent,
+    AddComponentComponent,
+    AddVendorComponent,
+    AddCatEquipmentComponent,
+    AddToScladComponent
   ],
     imports: [
         AppRoutingModule,

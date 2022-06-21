@@ -20,6 +20,10 @@ export class VendorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+this.update();
+  }
+  update(){
     this.api.findAllVendor().subscribe(data =>
     {
       this.categoryEquipment = data;
@@ -31,7 +35,6 @@ export class VendorComponent implements OnInit {
         this.selectCategory(this.categ);
       }
     });
-
   }
   private _filter(value: string): Vendor[] {
     const filterValue = value.toLowerCase();

@@ -13,6 +13,7 @@ import {
 import {environment} from "../environments/environment";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {AddComponentComponent} from "./add-component/add-component.component";
 
 @Injectable({
   providedIn: 'root'
@@ -158,5 +159,13 @@ export class ApiService {
     console.log(comp);
     return this.http.post(this.host + '/updateSklad', comp).pipe(map(posts => posts as Sklad[]))
   }
-
+  createVendor(name:string){
+    return this.http.post(this.host + '/createVendor', name).pipe(map(posts => posts as Vendor))
+  }
+  createComponent(name:string){
+    return this.http.post(this.host + '/createComponent', name).pipe(map(posts => posts as CategoryComponent))
+  }
+  createCatEq(name:string){
+    return this.http.post(this.host + '/createCatEq', name).pipe(map(posts => posts as CategoryEquipment))
+  }
 }
