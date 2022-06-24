@@ -32,7 +32,7 @@ export class EquipmentTableComponent implements OnInit {
 
   addEquipment(){
     this.api.createEquipment(this.otdel).subscribe( data => {
-      return this.dataSource = new MatTableDataSource<Equipment>(data);
+     this.update(this.otdel);
     });
   }
 }

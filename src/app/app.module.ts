@@ -39,6 +39,7 @@ import { PageSkladComponent } from './page-sklad/page-sklad.component';
 import { ReestrComponentovComponent } from './reestr-componentov/reestr-componentov.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { CategoryaComplectComponent } from './categorya-complect/categorya-complect.component';
+import { AddCompComponent } from './page-sklad/add-component/add-comp.component';
 
 
 const routes = [
@@ -73,7 +74,8 @@ const routes = [
     PageSkladComponent,
     ReestrComponentovComponent,
     VendorComponent,
-    CategoryaComplectComponent
+    CategoryaComplectComponent,
+    AddCompComponent
   ],
     imports: [
         AppRoutingModule,

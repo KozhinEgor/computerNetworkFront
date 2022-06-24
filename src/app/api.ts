@@ -58,7 +58,11 @@ export class ApiService {
       map(posts => posts as Sklad[])
     );
   }
-
+  findComponentNoSklad(){
+    return this.http.get(this.host+'/findComponentNoSklad').pipe(
+      map(posts => posts as Components[])
+    );
+  }
   findFreeProgramKeys(){
     return this.http.get(this.host+'/findFreeProgramKeys').pipe(
       map(posts => posts as ProgramKey[])
@@ -133,7 +137,11 @@ export class ApiService {
   }
 
   createEquipment(otdel: Otdel | undefined){
-    return this.http.post(this.host + '/equipmentCreate', otdel).pipe(map(post => post as Equipment[]))
+    return this.http.post(this.host + '/equipmentCreate', otdel).pipe(map(post => post as Equipment))
+  }
+
+  addToSklad(comp:Components){
+    return this.http.post(this.host + '/addToSklad', comp).pipe(map(post => post as Sklad))
   }
   addEqComp(eqCO: ComponentEquipment){
     return this.http.post(this.host + '/addEqComp',eqCO).pipe(map(posts => posts as ComponentEquipment[]))

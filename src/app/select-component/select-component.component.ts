@@ -15,6 +15,7 @@ export class SelectComponentComponent implements OnInit {
   myControl = new FormControl();
   components: Sklad[] = [];
   filteredOptions: Observable<Sklad[]> | undefined;
+  @Output() flag:boolean = true;
   constructor(private api: ApiService) {
   }
 

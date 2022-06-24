@@ -1,0 +1,18 @@
+<mat-dialog-content align="center">
+  <mat-form-field>
+    <mat-label>Укажите компонент</mat-label>
+    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" />
+    <button *ngIf="myControl.value !=='' && myControl.value"  matSuffix mat-icon-button style="color: darkgrey" aria-label="Clear" (click)="myControl.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"   panelWidth="max-width:1000px">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  class="name">
+        {{option.vendor.name}} {{option.name}} {{option.characteristick}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-button mat-dialog-close="">Закрыть</button>
+    <button mat-button [mat-dialog-close]="myControl.value" cdkFocusInitial>Добавить</button>
+  </mat-dialog-actions>
