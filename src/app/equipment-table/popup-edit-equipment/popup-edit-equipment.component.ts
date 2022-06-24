@@ -46,6 +46,9 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.data = data;
       })
     }
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
+    }
   }
   onChangeOtdel(t:any){
     if(t as Otdel && t.id !== this.data.otdel?.id){
@@ -53,6 +56,9 @@ export class PopupEditEquipmentComponent implements OnInit {
       this.api.updateEquipment(this.data).subscribe(data => {
         this.data = data;
       })
+    }
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }
   onChangeUser(t:any){
@@ -62,12 +68,18 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.data = data;
       })
     }
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
+    }
   }
   changeName(){
     if(this.data.name != null && this.data.name != ''){
       this.api.updateEquipment(this.data).subscribe(data => {
         this.data = data;
       })
+    }
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }
   addComp(){
@@ -78,6 +90,9 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.s.update();
         this.num=0;
       })
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
+    }
     }
   addProgram(){
     if(typeof this.selectProgramKeyComponent.myControl.value !== "string" && this.selectProgramKeyComponent.myControl.value !== null && this.selectProgramKeyComponent.myControl.value !== undefined)
@@ -86,8 +101,11 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.selectProgramKeyComponent.myControl.setValue('');
         this.selectProgramKeyComponent.update();
       })
-
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
+    }
   }
+
   delete(){
     this.dialog.open(DialogSelectComponent,{data:{text:'Вы хотите разобрать оборудование'}}).afterClosed().subscribe(data=>{
       if(data){

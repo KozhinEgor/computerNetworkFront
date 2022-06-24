@@ -39,6 +39,10 @@ import { PageSkladComponent } from './page-sklad/page-sklad.component';
 import { ReestrComponentovComponent } from './reestr-componentov/reestr-componentov.component';
 import { VendorComponent } from './vendor/vendor.component';
 import { CategoryaComplectComponent } from './categorya-complect/categorya-complect.component';
+import { AddComponentComponent } from './add-component/add-component.component';
+import { AddVendorComponent } from './add-vendor/add-vendor.component';
+import { AddCatEquipmentComponent } from './add-cat-equipment/add-cat-equipment.component';
+import { AddToScladComponent } from './add-to-sclad/add-to-sclad.component';
 import { AddCompComponent } from './page-sklad/add-component/add-comp.component';
 
 
@@ -75,6 +79,10 @@ const routes = [
     ReestrComponentovComponent,
     VendorComponent,
     CategoryaComplectComponent,
+    AddComponentComponent,
+    AddVendorComponent,
+    AddCatEquipmentComponent,
+    AddToScladComponent,
     AddCompComponent
   ],
     imports: [

@@ -20,6 +20,9 @@ export class CategoryaComplectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   this.update();
+  }
+  update(){
     this.api.findAllCategoryComponent().subscribe(data =>
     {
       this.categoryEquipment = data;

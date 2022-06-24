@@ -5,6 +5,11 @@ import {UserTableComponent} from "../user-table/user-table.component";
 import {VendorComponent} from "../vendor/vendor.component";
 import {CategoryaComplectComponent} from "../categorya-complect/categorya-complect.component";
 
+import {MatDialog} from "@angular/material/dialog";
+import {AddVendorComponent} from "../add-vendor/add-vendor.component";
+import {AddComponentComponent} from "../add-component/add-component.component";
+import {AddCatEquipmentComponent} from "../add-cat-equipment/add-cat-equipment.component";
+import {ErrorComponent} from "../error/error.component";
 @Component({
   selector: 'app-reestr-componentov',
   templateUrl: './reestr-componentov.component.html',
@@ -25,7 +30,7 @@ components:Components[] = [];
   @ViewChild(CategoryaComplectComponent)
   categoryaComplectComponent:CategoryaComplectComponent
 
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
   this.api.findAllComponent().subscribe( data => {
@@ -60,5 +65,21 @@ components:Components[] = [];
        this.default();
       })
     }
+    else{
+      this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
+    }
+  }
+  vendorAdd(){
+    this.dialog.open(AddVendorComponent).afterClosed().subscribe(d => {
+      this.vendor.update();
+    })
+  }
+  catComp(){
+    this.dialog.open(AddComponentComponent).afterClosed().subscribe(d => {
+      this.categoryaComplectComponent.update();
+    })
+  }
+  catEq(){
+    this.dialog.open(AddCatEquipmentComponent);
   }
 }
