@@ -61,6 +61,7 @@ export interface ProgramKey{
   value:string;
   date_start:Date;
   date_finish:Date;
+  programEquipment:ProgramKeyEquipment[];
 }
 export interface ProgramKeyEquipment{
   id: number;

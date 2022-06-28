@@ -46,7 +46,7 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.data = data;
       })
     }
-    else{
+    else if (t !== ''){
       this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }
@@ -57,7 +57,7 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.data = data;
       })
     }
-    else{
+    else if (t !== ''){
       this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }
@@ -68,7 +68,7 @@ export class PopupEditEquipmentComponent implements OnInit {
         this.data = data;
       })
     }
-    else{
+    else if (t !== ''){
       this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }

@@ -1,0 +1,44 @@
+.row{
+  display: flex;
+  justify-content: space-around;
+  /*align-items: center;*/
+  /*width: 100%;*/
+}
+.mat-drawer{
+  width: 20%;
+}
+.selectOtdel{
+  background: #3f51b5;
+  color: white;
+}
+.container {
+  width: 100%;
+  height: calc(100% - 66px);
+}
+.ChoseContainer{
+  width: 97%;
+  padding: 10px;
+  margin: 5px auto;
+  height: fit-content;
+
+}
+.EditContainer{
+  width: 40%;
+  position: sticky;
+  top: 40px;
+  display: inline-block;
+  min-width: 200px;
+  margin-top: 60px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid #e3e3e3;
+}
+.text{
+  font-size: 16px;
+  padding: 17px;
+}
+pad{
+  margin: 10px;
+}

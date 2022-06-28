@@ -44,7 +44,12 @@ import { AddVendorComponent } from './add-vendor/add-vendor.component';
 import { AddCatEquipmentComponent } from './add-cat-equipment/add-cat-equipment.component';
 import { AddToScladComponent } from './add-to-sclad/add-to-sclad.component';
 import { AddCompComponent } from './page-sklad/add-component/add-comp.component';
-
+import { ProgramReestrComponent } from './program-reestr/program-reestr.component';
+import { SelectProgramComponent } from './program-reestr/select-program/select-program.component';
+import { DatapickerComponent } from './program-reestr/datapicker/datapicker.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 
 const routes = [
   {path:'auth', component: PageAuthComponent},
@@ -52,6 +57,7 @@ const routes = [
   {path:'sklad', component: PageSkladComponent},
   {path:'component', component: ReestrComponentovComponent},
   {path:'home', component: PageHomeComponent},
+  {path: 'program-reestr',component: ProgramReestrComponent},
   {path: '**', redirectTo:'home'}
 ];
 
@@ -83,31 +89,36 @@ const routes = [
     AddVendorComponent,
     AddCatEquipmentComponent,
     AddToScladComponent,
-    AddCompComponent
+    AddCompComponent,
+    ProgramReestrComponent,
+    SelectProgramComponent,
+    DatapickerComponent
   ],
-    imports: [
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        RouterModule.forRoot(routes),
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatListModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatInputModule,
-        MatExpansionModule,
-        MatTableModule,
-        MatDialogModule,
-        MatAutocompleteModule,
-        FormsModule,
-        MatTabsModule
-    ],
-  providers: [],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    FormsModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  providers: [{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}, {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

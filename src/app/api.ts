@@ -6,7 +6,7 @@ import {
   ComponentEquipment,
   Components,
   Equipment,
-  Otdel, ProgramKey, ProgramKeyEquipment, Sklad,
+  Otdel, Program, ProgramKey, ProgramKeyEquipment, Sklad,
   User,
   UserA, Vendor
 } from "./classes";
@@ -57,6 +57,11 @@ export class ApiService {
   findFreeComponent(){
     return this.http.get(this.host+'/findFreeComponent').pipe(
       map(posts => posts as Sklad[])
+    );
+  }
+  findProgram(){
+    return this.http.get(this.host+'/programReestr').pipe(
+      map(posts => posts as ProgramKey[])
     );
   }
   findComponentNoSklad(){
@@ -175,5 +180,8 @@ export class ApiService {
   }
   createCatEq(name:string){
     return this.http.post(this.host + '/createCatEq', name).pipe(map(posts => posts as CategoryEquipment))
+  }
+  findPrograms(){
+    return this.http.get(this.host + '/programs').pipe(map(gets => gets as Program[]));
   }
 }

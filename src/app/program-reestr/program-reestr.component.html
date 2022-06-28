@@ -1,0 +1,62 @@
+<div class="row ChoseContainer mat-elevation-z8" >
+  <button mat-raised-button (click)="addProg()">
+    Добавить программу
+  </button>
+</div>
+<mat-drawer-container class="container">
+
+
+  <mat-drawer mode="side" opened>
+    <mat-list>
+      <mat-list-item *ngFor="let comp of programKey"  [ngClass]="{'selectOtdel':comp === selectProgram}" (click)="selectedComp(comp)">
+
+        {{comp.program.name}} {{comp.name}}
+
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="EditContainer">
+      <h4 class="card-header">Редактирование/Создание компонента</h4>
+      <!--          id, name? characteristick, categoryComponent, vendor, number-->
+      <div class="row">
+<!--        <app-vendor class="pad" [categ]="selectProgram.vendor"></app-vendor>-->
+        <app-select-program class="pad" [categ]="selectProgram.program"></app-select-program>
+        <mat-form-field class="example-form-field pad" appearance="legacy">
+          <mat-label>Название</mat-label>
+          <input matInput type="text" [(ngModel)]="selectProgram.name">
+          <button *ngIf="selectProgram.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectProgram.name =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="row">
+
+<!--        <app-categorya-complect class="pad" [categ]="selectProgram.categoryComponent"></app-categorya-complect>-->
+        <mat-form-field class="example-form-field pad" appearance="legacy">
+          <mat-label>Ключ</mat-label>
+          <input matInput type="text" [(ngModel)]="selectProgram.value">
+          <button *ngIf="selectProgram.value" matSuffix mat-icon-button aria-label="Clear" (click)="selectProgram.value =''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <app-datapicker [name]="'начала'" #dateStart></app-datapicker>
+        <app-datapicker [name]="'окончания'" #dateFinish></app-datapicker>
+      </div>
+      <div class="row">
+        <button *ngIf="selectProgram.programEquipment != null && selectProgram.programEquipment.length > 0" mat-raised-button (click)="openEquipment(selectProgram.programEquipment[0].equipment)">
+          Редактировать сборку
+        </button>
+        <button mat-raised-button (click)="save()">
+          Сохранить
+        </button>
+        <button mat-raised-button color="warn" (click)="update()">
+          Сбросить
+        </button>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
