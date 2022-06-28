@@ -35,40 +35,40 @@ export class PopupEditEquipmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.api.findComponentsEquipmentByEquipment(this.data).subscribe( data => {
-    //   this.dataSource = new MatTableDataSource<ComponentsEquipment>(data);
-    // })
+
   }
   onChangecategory_equipment(t: any){
-    if(t as CategoryEquipment && t.id !== this.data.category_equipment?.id){
+    if(typeof t != "string" && t.id !== this.data.category_equipment?.id){
       this.data.category_equipment = t;
       this.api.updateEquipment(this.data).subscribe(data => {
         this.data = data;
       })
     }
-    else if (t !== ''){
+    else if (typeof t != "string" && t.id !== this.data.category_equipment?.id){
       this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }
   onChangeOtdel(t:any){
-    if(t as Otdel && t.id !== this.data.otdel?.id){
+    console.log(typeof t != "string")
+    if(typeof t != "string" && t.id !== this.data.otdel?.id){
       this.data.otdel = t;
       this.api.updateEquipment(this.data).subscribe(data => {
         this.data = data;
       })
     }
-    else if (t !== ''){
+    else if (typeof t != "string" && t.id !== this.data.otdel?.id){
       this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }
   onChangeUser(t:any){
-    if(t as User && t.email !== this.data.user?.email){
+
+    if(typeof t != "string" && t.email !== this.data.user?.email){
       this.data.user = t;
       this.api.updateEquipment(this.data).subscribe(data => {
         this.data = data;
       })
     }
-    else if (t !== ''){
+    else if(typeof t != "string" && t.email !== this.data.user?.email){
       this.dialog.open(ErrorComponent,{data:{text: 'Проверьте значения'}})
     }
   }

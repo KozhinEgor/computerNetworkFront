@@ -50,6 +50,7 @@ import { DatapickerComponent } from './program-reestr/datapicker/datapicker.comp
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import { CreateProgComponent } from './program-reestr/create-program/create-prog.component';
 
 const routes = [
   {path:'auth', component: PageAuthComponent},
@@ -92,7 +93,8 @@ const routes = [
     AddCompComponent,
     ProgramReestrComponent,
     SelectProgramComponent,
-    DatapickerComponent
+    DatapickerComponent,
+    CreateProgComponent
   ],
   imports: [
     AppRoutingModule,

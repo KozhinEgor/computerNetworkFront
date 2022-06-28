@@ -175,6 +175,9 @@ export class ApiService {
   createVendor(name:string){
     return this.http.post(this.host + '/createVendor', name).pipe(map(posts => posts as Vendor))
   }
+  createProgram(name:string){
+    return this.http.post(this.host + '/saveProgram', name).pipe(map(posts => posts as Program))
+  }
   createComponent(name:string){
     return this.http.post(this.host + '/createComponent', name).pipe(map(posts => posts as CategoryComponent))
   }
@@ -183,5 +186,8 @@ export class ApiService {
   }
   findPrograms(){
     return this.http.get(this.host + '/programs').pipe(map(gets => gets as Program[]));
+  }
+  saveProgramKey(programKey:ProgramKey){
+    return this.http.post(this.host + '/saveProgramKey', programKey).pipe(map(posts => posts as ProgramKey))
   }
 }

@@ -7,6 +7,8 @@ import {PopupEditEquipmentComponent} from "../equipment-table/popup-edit-equipme
 import {AddCompComponent} from "../page-sklad/add-component/add-comp.component";
 import {SelectProgramComponent} from "./select-program/select-program.component";
 import {DatapickerComponent} from "./datapicker/datapicker.component";
+import {AddVendorComponent} from "../add-vendor/add-vendor.component";
+import {CreateProgComponent} from "./create-program/create-prog.component";
 
 @Component({
   selector: 'app-program-reestr',
@@ -40,7 +42,6 @@ export class ProgramReestrComponent implements OnInit {
 
     this.selectProgramComponent.selectProgram(c.program);
     this.selectProgram = c;
-    console.log(this.selectProgram)
     this.datapickerStart.date.setValue(c.date_start);
     this.datapickerFinish.date.setValue(c.date_finish)
   }
@@ -74,39 +75,25 @@ export class ProgramReestrComponent implements OnInit {
       this.selectProgram.program = this.selectProgramComponent.myControl.value;
       this.selectProgram.date_start = this.datapickerStart.date.value;
       this.selectProgram.date_finish = this.datapickerFinish.date.value;
-      console.log(this.selectProgram);
+      this.api.saveProgramKey(this.selectProgram).subscribe(data =>{
+        this.update();
+      });
     }
 
-  }
-  delete(){
-    // this.selectComp.number = null;
-    // this.dialog.open(DialogSelectComponent,{data:{text:'Вы хотите изменить списать компоненты?'}}).afterClosed().subscribe(data =>{
-    //   if(data){
-    //     this.api.updateSklad(this.selectComp).subscribe(data =>{
-    //       this.components = data;
-    //     });
-    //   }
-    //   this.update();
-    // })
   }
   openEquipment(e:Equipment){
     this.dialog.open(PopupEditEquipmentComponent,{width: '80%',
       height: '90%',data: e}).afterClosed().subscribe(data => {this.update()})
   }
   addProg(){
+    this.dialog.open(CreateProgComponent).afterClosed().subscribe(d => {
+      this.selectProgramComponent.update();
+    })
     // this.api.createEquipment({id:1,name:''}).subscribe( data => {
     //   this.dialog.open(PopupEditEquipmentComponent,{width: '80%', height: '90%',data:data}).afterClosed().subscribe(d => {
     //     this.update();
     //   })
     // });
   }
-  addKey(){
-    // this.dialog.open(AddCompComponent).afterClosed().subscribe(data => {
-    //   if(typeof data !== "string" && data !== null && data != undefined){
-    //     this.api.addToSklad(data).subscribe(data => {
-    //       this.update();
-    //     });
-    //   }
-    // });
-  }
+
 }
